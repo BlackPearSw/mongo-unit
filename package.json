@@ -1,6 +1,6 @@
 {
-  "name": "mongo-unit",
-  "version": "2.0.0",
+  "name": "@blackpear/mongo-unit",
+  "version": "2.0.2",
   "description": "mongo db for unit tests",
   "main": "index.js",
   "types": "index.d.ts",
@@ -28,7 +28,7 @@
     "mongodb-memory-server"
   ],
   "author": "Mikhail Angelov",
-  "license": "MIT",
+  "license": "UNLICENSED",
   "bugs": {
     "url": "https://github.com/mikhail-angelov/mongo-unit/issues"
   },
@@ -46,5 +46,8 @@
     "mocha": "^7.1.0",
     "mongoose": "^5.7.7",
     "prettier": "^1.19.1"
+  },
+  "directories": {
+    "example": "examples"
   }
 }

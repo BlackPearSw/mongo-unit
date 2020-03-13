@@ -22,6 +22,7 @@ let client
 let dbName
 
 function runMongo(opts, port) {
+  debug(`In runMongo path: ${opts.dbpath}, dbName: ${opts.dbName}, port ${port} `);
   mongod = new MongoMemoryServer({
     instance: {
       port: port,
@@ -34,9 +35,11 @@ function runMongo(opts, port) {
     },
     autoStart: false,
   })
+  debug(`Calling mongod`);
   return mongod
     .start()
     .then(() => {
+      debug(`Calling mongod.getDbName()`);
       return mongod.getDbName()
     })
     .then(dbName => {
@@ -53,6 +56,7 @@ function runMongo(opts, port) {
 }
 
 function start(opts) {
+  console.log('In  mongo-unit start')
   const mongo_opts = Object.assign(defaultMongoOpts, opts || {})
   if (mongo_opts.verbose) {
     Debug.enable('mongo-unit')
@@ -62,6 +66,7 @@ function start(opts) {
     return Promise.resolve(dbUrl)
   } else {
     makeSureTempDirExist(mongo_opts.dbpath)
+    console.log('TempDir Exists')
     return makeSureOtherMongoProcessesKilled(mongo_opts.dbpath)
       .then(() => getFreePort(mongo_opts.port))
       .then(port => runMongo(mongo_opts, port))
